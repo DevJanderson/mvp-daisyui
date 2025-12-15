@@ -3,6 +3,7 @@ import globals from 'globals'
 import js from '@eslint/js'
 import pluginVue from 'eslint-plugin-vue'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import autoImportGlobals from './.eslintrc-auto-import.json' with { type: 'json' }
 
 export default defineConfig([
   {
@@ -16,6 +17,7 @@ export default defineConfig([
     languageOptions: {
       globals: {
         ...globals.browser,
+        ...autoImportGlobals.globals,
       },
     },
   },
