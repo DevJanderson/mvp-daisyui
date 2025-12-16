@@ -9,6 +9,7 @@ Projeto Vue 3 com DaisyUI, Tailwind CSS e auto-import configurado.
 - **Tailwind CSS v4** - Framework CSS utilitario
 - **DaisyUI** - Componentes UI para Tailwind
 - **Vue Router** - Roteamento SPA
+- **Axios** - Cliente HTTP
 - **ESLint + Prettier** - Linting e formatacao
 
 ## Auto-Import
@@ -61,6 +62,13 @@ src/
 ├── assets/          # Arquivos estaticos (CSS, imagens)
 │   └── main.css     # Estilos globais + Tailwind
 ├── components/      # Componentes Vue (auto-import)
+│   ├── AvatarGroup.vue
+│   ├── AvatarItem.vue
+│   ├── BadgeBase.vue
+│   ├── CardBase.vue
+│   ├── LoadingSpinner.vue
+│   ├── ModalBase.vue
+│   └── PaginationBase.vue
 ├── layouts/         # Layouts de pagina (auto-import)
 │   └── DefaultLayout.vue
 ├── pages/           # Paginas/Views
@@ -70,6 +78,92 @@ src/
 │   └── index.js
 ├── App.vue          # Componente raiz
 └── main.js          # Entry point
+```
+
+## Componentes
+
+### CardBase
+
+Card com suporte a slots para customizacao.
+
+```vue
+<CardBase title="Titulo" badge="NEW" :tags="['tag1', 'tag2']">
+  <template #header>
+    <AvatarGroup :avatars="avatarUrls" />
+  </template>
+
+  <p>Conteudo customizado</p>
+
+  <template #footer>
+    <button class="btn btn-primary">Acao</button>
+  </template>
+</CardBase>
+```
+
+**Slots:** `header`, `default`, `footer`
+
+### ModalBase
+
+Modal com abertura programatica.
+
+```vue
+<ModalBase ref="modalRef" id="my-modal" title="Titulo">
+  <p>Conteudo do modal</p>
+</ModalBase>
+
+<script setup>
+const modalRef = ref(null)
+modalRef.value.open()  // Abrir
+modalRef.value.close() // Fechar
+</script>
+```
+
+### PaginationBase
+
+Paginacao com v-model.
+
+```vue
+<PaginationBase
+  :total-pages="10"
+  :current-page="page"
+  @update:current-page="goToPage"
+/>
+```
+
+**Slots:** `prev`, `page`, `next`
+
+### AvatarGroup
+
+Grupo de avatares com contador de extras.
+
+```vue
+<AvatarGroup :avatars="urls" size="w-12" :max="4" />
+```
+
+**Slots:** `avatar`, `extra`
+
+### AvatarItem
+
+Avatar individual com nome.
+
+```vue
+<AvatarItem src="image.jpg" name="Nome" size="w-16" />
+```
+
+### LoadingSpinner
+
+Spinner de carregamento.
+
+```vue
+<LoadingSpinner size="loading-md" variant="loading-spinner" />
+```
+
+### BadgeBase
+
+Badge customizavel.
+
+```vue
+<BadgeBase variant="badge-primary">Texto</BadgeBase>
 ```
 
 ## Scripts

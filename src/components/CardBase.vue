@@ -26,24 +26,24 @@ defineProps({
 <template>
   <div class="card bg-base-100 w-96 shadow-sm mb-1">
     <div class="card-body">
-      <div v-if="avatars.length" class="avatar-group -space-x-6">
-        <div v-for="(avatar, index) in avatars" :key="index" class="avatar">
-          <div class="w-12">
-            <img :src="avatar" />
-          </div>
-        </div>
-      </div>
+      <slot name="header">
+        <AvatarGroup v-if="avatars.length" :avatars="avatars" />
+      </slot>
+
       <h2 class="card-title">
         {{ title }}
-        <div v-if="badge" class="badge badge-secondary">{{ badge }}</div>
+        <BadgeBase v-if="badge" variant="badge-secondary">{{ badge }}</BadgeBase>
       </h2>
-      <p>{{ description }}</p>
+
+      <slot>
+        <p>{{ description }}</p>
+      </slot>
 
       <div v-if="tags.length" class="card-actions justify-end">
-        <div v-for="tag in tags" :key="tag" class="badge badge-outline">
-          {{ tag }}
-        </div>
+        <BadgeBase v-for="tag in tags" :key="tag">{{ tag }}</BadgeBase>
       </div>
+
+      <slot name="footer" />
     </div>
   </div>
 </template>

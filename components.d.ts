@@ -11,9 +11,15 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AvatarGroup: typeof import('./src/components/AvatarGroup.vue')['default']
+    AvatarItem: typeof import('./src/components/AvatarItem.vue')['default']
+    BadgeBase: typeof import('./src/components/BadgeBase.vue')['default']
     Card: typeof import('./src/components/CardBase.vue')['default']
     CardBase: typeof import('./src/components/CardBase.vue')['default']
     DefaultLayout: typeof import('./src/layouts/DefaultLayout.vue')['default']
+    LoadingSpinner: typeof import('./src/components/LoadingSpinner.vue')['default']
+    ModalBase: typeof import('./src/components/ModalBase.vue')['default']
+    PaginationBase: typeof import('./src/components/PaginationBase.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
